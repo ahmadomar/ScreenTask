@@ -7,18 +7,34 @@ Thanks for Eslam Hamouda ;) for develop windows application ( https://github.com
 After that i have developed Generic screentask application that works in windows and linux ubuntu
 
 
-> Download ZIP Archive (380 KB)
+### > [Download ZIP Archive (380 KB)](http://goo.gl/iK4Alw)
 
 
 
-List Of Features :
-------------------
-1- Share Your Screen Inside a Network Without Internet Connection (No TeamViewer Anymore)
-2- WebUI So Clients Doesn't Need Any Additional Software (Only Web Browser)
-3- Make Your Session Private Using Basic Authentication (User::Password)
-4- Unlimited Number Of Connected Clients
-5- Work in any operating system
+------------------------------
+### List Of Features : 
+- Share Your Screen Inside a Network Without Internet Connection (No TeamViewer Anymore)
+- WebUI So Clients Doesn't Need Any Additional Software (Only Web Browser)
+- Make Your Session Private Using Basic Authentication (User::Password)
+- Unlimited Number Of Connected Clients
+- Work in any operating system not tested in mac
 
 -----------------------
-Ubuntu screenshots:
+### Ubuntu screenshots:
 
+![Screen Task Main Window](https://raw2.github.com/ahmadomar/ScreenTask/master/ScreenTask/ubuntu1.png)
+![Another window](https://raw2.github.com/ahmadomar/ScreenTask/master/ScreenTask/ubuntu2.png)
+
+
+
+
+
+
+
+
+
+> Mobile View Supported [Thanks to Bootstrap 3]
+
+> Java is Required [Download NOW!](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+
+> Works On Windows, linux and not tested in mac
