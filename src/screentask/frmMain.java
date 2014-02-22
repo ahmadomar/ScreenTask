@@ -315,21 +315,14 @@ public class frmMain extends javax.swing.JFrame {
                 if(isPrivate)
                 {
                     webServer.setUsername(txtUser.getText());
-                    webServer.setPassword(txtPassword.getSelectedText());
+                    webServer.setPassword(new String(txtPassword.getPassword()));
                     
                 }
                 
-                Resources resource = new Resources();
+                isWorking = webServer.StartServer(txtLog,ipAddress,port,isPrivate);
                 
-                //java.io.FilePermission perm = new java.io.FilePermission(resource.appStartUpPath()+Resources.getPathDelimiter()+"ScreenTask.jar", "read,execute");
-                
-                synchronized(this){
-                    isWorking = webServer.StartServer(txtLog,ipAddress,port,isPrivate);
-                }
                 if(isWorking){
-                screenThread = new ScreenThread(every, chkMousePointer.isSelected());
-                
-                
+                    screenThread = new ScreenThread(every, chkMousePointer.isSelected());
                 
                 screenThread.start();
                 
@@ -344,7 +337,9 @@ public class frmMain extends javax.swing.JFrame {
                 btnStartServer.setName("stop");
                 btnStartServer.setText("Stop Server");
                 spnPortNum.setEnabled(false);
-        
+                chkPrivate.setEnabled(false);
+                txtUser.setEnabled(false);
+                txtPassword.setEnabled(false);
                 }else{
                     btnStartServer.setEnabled(true);
                     Resources.Log(txtLog, "An error while starting the server");
@@ -363,6 +358,12 @@ public class frmMain extends javax.swing.JFrame {
                 btnStartServer.setName("start");
                 btnStartServer.setText("Start Server");
                     spnPortNum.setEnabled(true);
+                    chkPrivate.setEnabled(true);
+                    if(chkPrivate.isSelected())
+                    {
+                        txtUser.setEnabled(true);
+                        txtPassword.setEnabled(true);
+                    }
                 }
             }
         } catch (Exception ex) {

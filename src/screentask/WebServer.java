@@ -47,6 +47,7 @@ public class WebServer {
         HttpContext context = server.createContext("/", (HttpHandler) new MyHttpHandler());
         
         if(isPrivate){
+            synchronized(this){
             context.setAuthenticator(new BasicAuthenticator("Screen Task Authentication") {
                 @Override
                 public boolean checkCredentials(String user, String pwd) {
@@ -54,6 +55,7 @@ public class WebServer {
                     return checked;
                 }
             });
+            }
         }
         server.setExecutor(null); // creates a default executor
         server.start();
