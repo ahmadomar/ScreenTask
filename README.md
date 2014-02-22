@@ -28,8 +28,8 @@ After that i have developed Generic screentask application that works in windows
 
 ### Windows screenshots:
 
-![Screen Task Main Window](https://raw2.github.com/ahmadomar/ScreenTask/master/ScreenTask/windows1.png)
-![Another window](https://raw2.github.com/ahmadomar/ScreenTask/master/ScreenTask/windows2.png)
+![Screen Task Main Window](https://raw2.github.com/ahmadomar/ScreenTask/master/windows1.png)
+![Another window](https://raw2.github.com/ahmadomar/ScreenTask/master/windows2.png)
 
 
 
