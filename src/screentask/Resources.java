@@ -52,10 +52,8 @@ public class Resources {
     
    
     public String appStartUpPath() throws URISyntaxException, MalformedURLException{
-        //return System.getProperty("user.dir");
-        //return getClass().getResource("").getPath();
         String path = getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
-        path = path.substring(0, path.lastIndexOf(getPathDelimiter()));
+        path = path.substring(0, path.lastIndexOf("/"));
         return path;
     }
     

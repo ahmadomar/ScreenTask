@@ -31,11 +31,10 @@ public class MyHttpHandler implements HttpHandler {
             _httpExchange = httpExchange;
             
             Resources resource = new Resources();
-            String pathDeli = Resources.getPathDelimiter();
             
             String webServerPath="";
         try {
-            webServerPath = resource.appStartUpPath()+pathDeli+"WebServer"+pathDeli;
+            webServerPath = resource.appStartUpPath()+"/WebServer/";
            
         } catch (URISyntaxException ex) {
             ex.printStackTrace();

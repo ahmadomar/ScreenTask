@@ -68,11 +68,8 @@ public class ScreenShot {
         
         Resources resource = new Resources();
         String startDir = resource.appStartUpPath();
-       String pathDeli = Resources.getPathDelimiter();//startDir +pathDeli+
        
-       //WebServerUtility wsUtility = new WebServerUtility();
-       
-        String fileNameToSaveTo = startDir+pathDeli+"WebServer"+pathDeli+"ScreenTask.jpg";
+        String fileNameToSaveTo = startDir+"/WebServer/ScreenTask.jpg";
          
         /**
          * Write the captured image to a file.
@@ -88,11 +85,10 @@ public class ScreenShot {
           
           Resources resource = new Resources();
           String startDir = resource.appStartUpPath();
-          String pathDeli = Resources.getPathDelimiter();
           
            Image cursor=null;
        
-            cursor = ImageIO.read(new File(startDir+pathDeli+"WebServer"+pathDeli+"cursor_arrow.png"));
+            cursor = ImageIO.read(new File(startDir+"/WebServer/cursor_arrow.png"));
        
             Graphics graphics2D = screenCapture.createGraphics();
             graphics2D.drawImage(cursor, x, y, 25, 25, null);
@@ -105,9 +101,8 @@ public class ScreenShot {
         Resources resource = new Resources();
         
         String startDir = resource.appStartUpPath();
-        String pathDeli = Resources.getPathDelimiter();
         
-        imagePath = startDir+pathDeli+"WebServer"+pathDeli+"ScreenTask.jpg";
+        imagePath = startDir+"/WebServer/ScreenTask.jpg";
        
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Image image = toolkit.getImage(imagePath);
