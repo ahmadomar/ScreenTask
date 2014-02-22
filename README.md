@@ -22,8 +22,8 @@ After that i have developed Generic screentask application that works in windows
 -----------------------
 ### Ubuntu screenshots:
 
-![Screen Task Main Window](https://raw2.github.com/ahmadomar/ScreenTask/master/ScreenTask/ubuntu1.png)
-![Another window](https://raw2.github.com/ahmadomar/ScreenTask/master/ScreenTask/ubuntu2.png)
+![Screen Task Main Window](https://raw2.github.com/ahmadomar/ScreenTask/master/ubuntu1.png)
+![Another window](https://raw2.github.com/ahmadomar/ScreenTask/master/ubuntu2.png)
 
 
 ### Windows screenshots:
