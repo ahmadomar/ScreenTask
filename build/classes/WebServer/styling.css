@@ -1,0 +1,79 @@
+body {
+    background-color: black;
+}
+
+#menu {
+    width: 360px;
+    height: 240px;
+    border-style: solid;
+    border-color: black;
+    border-width: 5px 0 0 5px;
+    border-radius: 20px 10px 100px 10px;
+    background: linear-gradient(
+        to bottom,
+        rgba(16,16,16,1),
+        rgba(16,16,16,1),
+        rgba(8,8,8,0.66)
+    );
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+#menu ul {
+    font-size: 28px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    list-style-type: none;
+    margin: 30px 0 0 -10px;
+}
+#menu ul li {
+    margin-bottom: 12px;
+}
+#menu ul li .desc {
+    font-size: 26px;
+    display: inline-block;
+    width: 120px;
+}
+#menu ul li i {
+    margin-right: 24px;
+}
+#menu ul li i.active {
+    color: rgb(112,112,112);
+}
+#menu ul li input {
+    border: none;
+    margin: -2px 4px 0 -8px;
+    padding: 0 4px 0 4px;
+    width: 62px;
+    height: 32px;
+    background: rgb(10,10,10);
+    font-size: 24px;
+    text-align: right;
+}
+#menu ul li input + span {
+    font-size: 24px;
+}
+#menu ul li hr {
+    position: relative;
+    left: -18px;
+    width: 300px;
+    border-color: rgb(32,32,32);
+    border-width: 4px;
+}
+#menu ul li .EslaMx7   { color: #0000FF; /*looks nice*/}
+#menu ul li .ahmadomar { color: #428bca; /*looks nice*/}
+#menu ul li .HoffmannP { color: #47243C; /* RAL 4007 */}
+
+#menu.low {
+    border-width: 0 0 0 0;
+    background: radial-gradient(
+        farthest-side at 100% 100%,
+        rgba(16,16,16,.9),
+        rgba(16,16,16,0)
+    );
+    width: 200px;
+    height: 200px;
+}
+#menu.low ul {
+    display: none;
+}
