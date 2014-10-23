@@ -1,6 +1,6 @@
 function start() {
     var preload = new Preload(
-        new FreshUrl('http://localhost/ScreenTask/build/classes/WebServer/ScreenTask.jpg'),
+        new FreshUrl('http://localhost/code/ScreenTask/build/classes/WebServer/ScreenTask.jpg'),
         500, true),
     screenShot = new ScreenShot($('#screenShot')),
     tileSelector = new TileSelector(
@@ -13,7 +13,10 @@ function start() {
     );
     preload.on(screenShot.load.bind(screenShot)).start();
 
-    Menu($('#menu'), preload, screenShot, tileSelector);
+    Menu($('#menu'), preload, screenShot, tileSelector, freeSelector);
+
+    screenShot.setDisplay('full', []);
+    freeSelector.activate();
 }
 
 function FreshUrl(sBaseUrl) {
@@ -128,63 +131,63 @@ function ScreenShot(oImageelement) {
             resize_flex = resize_free;
             args = aArgs;
         } else { // 'full'
-        resize_flex = resize_full;
-        args = [];
-    }
-    resize_flex.apply(this, args);
-    return this;
-};
-
-function resize_full() {
-    resize_raw(0, w, h, 0);
-}
-
-function resize_ratio(tilesVertical, col, tilesHorizontal, row) {
-    var tileWidth  = w/tilesVertical,
-    tileHeigth = h/tilesHorizontal;
-    resize_raw(
-        row * tileHeigth,
-        (col+1) * tileWidth,
-        (row+1) * tileHeigth,
-        col * tileWidth
-        );
-}
-
-function resize_free(top, right, bottom, left) {
-    resize_ratio(
-        top * h,
-        right * w,
-        bottom * h,
-        left * w
-    );
-}
-
-function resize_raw(top, right, bottom, left) {
-    var imgWidth = right - left,
-    imgHeight = bottom - top,
-    factor = Math.min(
-        window.innerWidth/imgWidth,
-        window.innerHeight/imgHeight
-        ),
-    newHeight = factor * imgHeight,
-    newWidth = factor * imgWidth,
-    divCSS = {
-        top:      Math.round((window.innerHeight - newHeight)/2),
-        left:     Math.round((window.innerWidth  - newWidth)/2),
-        height:   Math.round(newHeight),
-        width:    Math.round(newWidth)
-    },
-    imgCSS = {
-        top:      -Math.round(factor * top),
-        left:     -Math.round(factor * left),
-        width:    Math.round(factor * w),
-        height:   Math.round(factor * h)
+            resize_flex = resize_full;
+            args = [];
+        }
+        resize_flex.apply(this, args);
+        return this;
     };
-    oImageelement.css(imgCSS).parent().css(divCSS);
-}
+
+    function resize_full() {
+        resize_raw(0, w, h, 0);
+    }
+
+    function resize_ratio(tilesVertical, col, tilesHorizontal, row) {
+        var tileWidth  = w/tilesVertical,
+        tileHeigth = h/tilesHorizontal;
+        resize_raw(
+            row * tileHeigth,
+            (col+1) * tileWidth,
+            (row+1) * tileHeigth,
+            col * tileWidth
+            );
+    }
+
+    function resize_free(top, right, bottom, left) {
+        resize_ratio(
+            top * h,
+            right * w,
+            bottom * h,
+            left * w
+        );
+    }
+
+    function resize_raw(top, right, bottom, left) {
+        var imgWidth = right - left,
+        imgHeight = bottom - top,
+        factor = Math.min(
+            window.innerWidth/imgWidth,
+            window.innerHeight/imgHeight
+            ),
+        newHeight = factor * imgHeight,
+        newWidth = factor * imgWidth,
+        divCSS = {
+            top:      Math.round((window.innerHeight - newHeight)/2),
+            left:     Math.round((window.innerWidth  - newWidth)/2),
+            height:   Math.round(newHeight),
+            width:    Math.round(newWidth)
+        },
+        imgCSS = {
+            top:      -Math.round(factor * top),
+            left:     -Math.round(factor * left),
+            width:    Math.round(factor * w),
+            height:   Math.round(factor * h)
+        };
+        oImageelement.css(imgCSS).parent().css(divCSS);
+    }
 }
 
-function Menu(oElement, oPreload, oScreenShot, oTileSelector) {
+function Menu(oElement, oPreload, oScreenShot, oTileSelector, oFreeSelector) {
     $('i.size', oElement).click(function () {
         var el = $(this);
         el.parent().find('i').removeClass("active");
@@ -233,7 +236,7 @@ function Menu(oElement, oPreload, oScreenShot, oTileSelector) {
     });
 }
 
-function TileSelector(parent, action) {
+function TileSelector(sParent, fnAction) {
     var self = this,
     dim = {
         row: 1,
@@ -241,7 +244,7 @@ function TileSelector(parent, action) {
     },
     container = $('<div id="selectRatio">'),
     table = $('<table>');
-    $(parent).append(container);
+    $(sParent).append(container);
     container.append(table).css('display', 'none');
 
     container.on('click', 'button', function () {
@@ -257,7 +260,7 @@ function TileSelector(parent, action) {
         draw();
     }).on('click', 'td', function () {
         var td = $(this);
-        action([dim.col, td.data('col'), dim.row, td.data('row')]);
+        fnAction([dim.col, td.data('col'), dim.row, td.data('row')]);
         container.css('display', 'none');
     });
 
@@ -291,9 +294,80 @@ function TileSelector(parent, action) {
     draw();
 }
 
-function FreeSelector(parent, action) {
+function FreeSelector(sParent, fnAction) {
+    var parent = $(sParent),
+        Width = 0,
+        Height = 0,
+        top = 0.25,
+        right = 0.75,
+        bottom = 0.75,
+        left = 0.25,
+        div = $('<div id="selectFree">'),
+        buttons = {
+            left: 'arrow-left',
+            right: 'arrow-right',
+            up: 'arrow-up',
+            down: 'arrow-down',
+            accept: 'check',
+            move: 'arrows'
+        },
+        key, bnt;
+
+    parent.append(div);
+
+    for (key in buttons) {
+        btn = $('<button class="'+key+'" data-action="'+key+'">'+
+            '<i class="fa fa-'+buttons[key]+'"> </i>'+
+            '</button>'
+        );
+        buttons[key] = div.append(btn);
+        if (key == 'accept') {
+            btn.click(deactivate);
+            continue;
+        }
+        btn.mousedown(resizeBegin.bind(this, key));
+    }
+
+
+    /* Resize */
+    var resizeDirection;
+    function resizeBegin(key) {
+        resizeDirection = key;
+        $(document).mousemove(resize);
+        $(document).mouseup(resizeEnd);
+    }
+    function resize(e) {
+            console.log(e);
+            setAttribute(e.clientX, e.clientY);
+    }
+    function resizeEnd(e) {
+            setAttribute(e.clientX, e.clientY);
+            $(document).unbind('mousemove').unbind('mouseup');
+    }
+    function setAttribute(x, y) {
+        switch (resize) {
+            default: console.log(x, y, resizeDirection);
+        }
+    }
+    /* End Resize */
+
+    function deactivate() {
+        var td = $(this);
+        fnAction([top, right, bottom, left]);
+        div.css('display', 'none');
+    }
+
     this.activate = function () {
+        div.css('display', 'block');
+        Width = parent.width();
+        Height = parent.height();
+        div.css(css = {
+            top: top * Height,
+            right: (1-right) * Width,
+            bottom: (1-bottom) * Height,
+            left: left * Width
+        });
     };
 
-    action([0, 0, 100, 100]);
+    fnAction([0, 0, 1, 1]);
 }

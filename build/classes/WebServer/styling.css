@@ -31,7 +31,7 @@ body {
 }
 #menu ul {
     font-size: 28px;
-    color: rgb(32,32,32);
+    color: rgb(127,127,127);
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     list-style-type: none;
     margin: 30px 0 0 -10px;
@@ -48,7 +48,7 @@ body {
     margin-right: 24px;
 }
 #menu ul li i.active {
-    color: rgb(112,112,112);
+    color: rgb(255,255,255);
 }
 #menu ul li input {
     border: none;
@@ -56,7 +56,7 @@ body {
     padding: 0 4px 0 4px;
     width: 62px;
     height: 32px;
-    color: rgb(32,32,32);
+    color: rgb(127,127,127);
     background: rgb(10,10,10);
     font-size: 24px;
     text-align: right;
@@ -69,7 +69,7 @@ body {
     left: -18px;
     width: 300px;
     border-style: solid;
-    border-color: rgb(32,32,32);
+    border-color: rgb(127,127,127);
     border-width: 3px;
 }
 #menu ul li .EslaMx7   { color: #0000FF; /*looks nice*/}
@@ -80,7 +80,7 @@ body {
     border-width: 0 0 0 0;
     background: radial-gradient(
         farthest-side at 100% 100%,
-        rgba(16,16,16,.9),
+        rgba(16,16,16,1),
         rgba(16,16,16,0)
     );
     width: 200px;
@@ -178,3 +178,62 @@ body {
     );
 }
 
+#selectFree {
+    background-color: rgba(0,0,0,0);
+    border: 1px solid red;
+    position: absolute;
+}
+#selectFree button {
+    font-size: 13px;
+    position: absolute;
+    display: block;
+    text-align: center;
+    overflow: visible;
+    background-color: rgba(127,127,127,.8);
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 15px;
+}
+#selectFree .up {
+    width: 100px;
+    top: 0;
+    left: 50%;
+    margin: -15px 0 0 -50px;
+}
+#selectFree .right {
+    height: 100px;
+    right: 0;
+    top: 50%;
+    margin: -50px -15px 0 0;
+}
+#selectFree .down {
+    width: 100px;
+    bottom: 0;
+    left: 50%;
+    margin: 0 0 -15px -50px;
+}
+#selectFree .left {
+    height: 100px;
+    left: 0;
+    top: 50%;
+    margin: -50px 0 0 -15px;
+}
+#selectFree .accept {
+    width: 50px;
+    height: 50px;
+    font-size: 22px;
+    border-radius: 25px;
+    left: 50%;
+    top: 50%;
+    margin: -25px 0 0 -55px;
+}
+#selectFree .move {
+    width: 50px;
+    height: 50px;
+    font-size: 22px;
+    border-radius: 25px;
+    left: 50%;
+    top: 50%;
+    margin: -25px 0 0 5px;
+}
