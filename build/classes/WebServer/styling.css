@@ -2,6 +2,15 @@ body {
     background-color: black;
 }
 
+#screenShotHolder {
+    overflow: hidden;
+    position: absolute;
+}
+#screenShot {
+    position: absolute;
+    display: block;
+}
+
 #menu {
     width: 360px;
     height: 240px;
@@ -22,6 +31,7 @@ body {
 }
 #menu ul {
     font-size: 28px;
+    color: rgb(32,32,32);
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     list-style-type: none;
     margin: 30px 0 0 -10px;
@@ -46,6 +56,7 @@ body {
     padding: 0 4px 0 4px;
     width: 62px;
     height: 32px;
+    color: rgb(32,32,32);
     background: rgb(10,10,10);
     font-size: 24px;
     text-align: right;
@@ -57,8 +68,9 @@ body {
     position: relative;
     left: -18px;
     width: 300px;
+    border-style: solid;
     border-color: rgb(32,32,32);
-    border-width: 4px;
+    border-width: 3px;
 }
 #menu ul li .EslaMx7   { color: #0000FF; /*looks nice*/}
 #menu ul li .ahmadomar { color: #428bca; /*looks nice*/}
@@ -77,3 +89,92 @@ body {
 #menu.low ul {
     display: none;
 }
+
+#selectRatio table {
+    position: absolute;
+    z-index: 5;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+}
+#selectRatio td {
+    text-align: center;
+    color: rgba(255,0,0,.8);
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 150px;
+    border: 1px solid red;
+}
+#selectRatio td:hover {
+    background-color: rgba(127,127,127,.5);
+}
+#selectRatio button {
+    display: block;
+    position: absolute;
+    z-index: 10;
+    width: 50px;
+    height: 50px;
+    border: none;
+    font-size: 20px;
+    padding: 0;
+}
+#selectRatio button.col {
+    top: 50%;
+    height: 100px;
+    margin-top: -50px;
+}
+#selectRatio button.inc.col {
+    right: 0;
+    padding-left: 20px;
+    background: radial-gradient(
+        farthest-side at 100% 50%,
+        rgba(255,255,255,.5),
+        rgba(255,255,255,.5),
+        rgba(255,255,255,.5),
+        rgba(255,255,255,.5),
+        rgba(0,0,0,0)
+    );
+}
+#selectRatio button.dec.col {
+    left: 0;
+    padding-right: 20px;
+    background: radial-gradient(
+        farthest-side at 0% 50%,
+        rgba(255,255,255,.5),
+        rgba(255,255,255,.5),
+        rgba(255,255,255,.5),
+        rgba(255,255,255,.5),
+        rgba(0,0,0,0)
+    );
+}
+#selectRatio button.row {
+    left: 50%;
+    width: 100px;
+    margin-left: -50px;
+}
+#selectRatio button.inc.row {
+    bottom: 0;
+    padding-top: 20px;
+    background: radial-gradient(
+        farthest-side at 50% 100%,
+        rgba(255,255,255,.5),
+        rgba(255,255,255,.5),
+        rgba(255,255,255,.5),
+        rgba(255,255,255,.5),
+        rgba(0,0,0,0)
+    );
+}
+#selectRatio button.dec.row {
+    top: 0;
+    padding-bottom: 20px;
+    background: radial-gradient(
+        farthest-side at 50% 0%,
+        rgba(255,255,255,.5),
+        rgba(255,255,255,.5),
+        rgba(255,255,255,.5),
+        rgba(255,255,255,.5),
+        rgba(0,0,0,0)
+    );
+}
+
