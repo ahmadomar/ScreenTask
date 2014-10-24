@@ -1,6 +1,6 @@
-function start() {
+function start(imageUrl) {
     var preload = new Preload(
-        new FreshUrl('http://localhost/code/ScreenTask/build/classes/WebServer/ScreenTask.jpg'),
+        new FreshUrl(imageUrl),
         500, true),
     screenShot = new ScreenShot($('#screenShot')),
     tileSelector = new TileSelector(
@@ -11,12 +11,10 @@ function start() {
         '#screenShotHolder',
         screenShot.setDisplay.bind(screenShot, 'free')
     );
+
     preload.on(screenShot.load.bind(screenShot)).start();
-
     Menu($('#menu'), preload, screenShot, tileSelector, freeSelector);
-
     screenShot.setDisplay('full', []);
-    freeSelector.activate();
 }
 
 function FreshUrl(sBaseUrl) {
@@ -154,7 +152,7 @@ function ScreenShot(oImageelement) {
     }
 
     function resize_free(top, right, bottom, left) {
-        resize_ratio(
+        resize_raw(
             top * h,
             right * w,
             bottom * h,
@@ -298,6 +296,8 @@ function FreeSelector(sParent, fnAction) {
     var parent = $(sParent),
         Width = 0,
         Height = 0,
+        Left = 0,
+        Top = 0,
         top = 0.25,
         right = 0.75,
         bottom = 0.75,
@@ -314,6 +314,7 @@ function FreeSelector(sParent, fnAction) {
         key, bnt;
 
     parent.append(div);
+    div.css('display', 'none');
 
     for (key in buttons) {
         btn = $('<button class="'+key+'" data-action="'+key+'">'+
@@ -337,7 +338,6 @@ function FreeSelector(sParent, fnAction) {
         $(document).mouseup(resizeEnd);
     }
     function resize(e) {
-            console.log(e);
             setAttribute(e.clientX, e.clientY);
     }
     function resizeEnd(e) {
@@ -345,28 +345,59 @@ function FreeSelector(sParent, fnAction) {
             $(document).unbind('mousemove').unbind('mouseup');
     }
     function setAttribute(x, y) {
-        switch (resize) {
-            default: console.log(x, y, resizeDirection);
+        var width;
+        switch (resizeDirection) {
+            case 'up':
+                top = Math.min(bottom, Math.max(0, (y - Top)/Height));
+                break;
+            case 'right':
+                right = Math.max(left, Math.min(1, (x - Left)/Width));
+                break;
+            case 'down':
+                bottom = Math.max(top, Math.min(1, (y - Top)/Height));
+                break;
+            case 'left':
+                left = Math.min(right, Math.max(0, (x - Left)/Width));
+                break;
+            case 'move':
+                width = right - left;
+                t_left = Math.max(0, (x - Left)/Width - width/2);
+                right = Math.min(1, t_left + width);
+                left = right - width;
+
+                height = bottom - top;
+                t_top = Math.max(0, (y - Top)/Height - height/2);
+                bottom = Math.min(1, t_top + height);
+                top = bottom - height;
+                break;
         }
+        positionDiv();
     }
     /* End Resize */
 
     function deactivate() {
-        var td = $(this);
         fnAction([top, right, bottom, left]);
         div.css('display', 'none');
+    }
+
+    function positionDiv() {
+        css = {
+            top: top * Height,
+            right: (1-right) * Width,
+            bottom: (1-bottom) * Height,
+            left: left * Width
+        };
+        div.css(css);
     }
 
     this.activate = function () {
         div.css('display', 'block');
         Width = parent.width();
         Height = parent.height();
-        div.css(css = {
-            top: top * Height,
-            right: (1-right) * Width,
-            bottom: (1-bottom) * Height,
-            left: left * Width
-        });
+        var offset = parent.offset();
+        Left = offset.left;
+        Top = offset.top;
+        positionDiv();
     };
 
     fnAction([0, 0, 1, 1]);
