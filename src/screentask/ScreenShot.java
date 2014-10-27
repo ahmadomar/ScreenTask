@@ -69,7 +69,7 @@ public class ScreenShot {
         Resources resource = new Resources();
         String startDir = resource.appStartUpPath();
        
-        String fileNameToSaveTo = startDir+"/ScreenTask.jpg";
+        String fileNameToSaveTo = startDir+"/WebServer/ScreenTask.jpg";
          
         /**
          * Write the captured image to a file.
