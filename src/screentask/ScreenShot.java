@@ -69,7 +69,7 @@ public class ScreenShot {
         Resources resource = new Resources();
         String startDir = resource.appStartUpPath();
        
-        String fileNameToSaveTo = startDir+"/WebServer/ScreenTask.jpg";
+        String fileNameToSaveTo = startDir+"/ScreenTask.jpg";
          
         /**
          * Write the captured image to a file.
@@ -88,7 +88,7 @@ public class ScreenShot {
           
            Image cursor=null;
        
-            cursor = ImageIO.read(new File(startDir+"/WebServer/cursor_arrow.png"));
+            cursor = ImageIO.read(new File(startDir+"/cursor_arrow.png"));
        
             Graphics graphics2D = screenCapture.createGraphics();
             graphics2D.drawImage(cursor, x, y, 25, 25, null);
