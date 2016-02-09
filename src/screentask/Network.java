@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package screentask;
 
 import java.net.Inet4Address;
@@ -14,12 +8,8 @@ import java.net.UnknownHostException;
 import java.util.Enumeration;
 import javax.swing.JComboBox;
 
-/**
- *
- * @author Ahmad
- */
 public class Network {
-    public static void LoadIps(JComboBox combo) throws SocketException {
+    public static void LoadIps(JComboBox<String> combo) throws SocketException {
         Enumeration<NetworkInterface> n = NetworkInterface.getNetworkInterfaces();
         for (; n.hasMoreElements();) {
             NetworkInterface e = n.nextElement();
@@ -30,7 +20,7 @@ public class Network {
                 String getHostAddress = addr.getHostAddress();
 
                 if (checkIPv4(getHostAddress)) {
-                    combo.addItem(addr.getHostAddress() + " # " + e.getDisplayName().toString());
+                    combo.addItem(addr.getHostAddress() + " # " + e.getDisplayName());
                 }
             }
         }
