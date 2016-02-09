@@ -9,9 +9,9 @@ This Programm consists of a Java App that regularly takes screenshots and a webs
 History
 -------
 
-* The (Java App)[https://github.com/ahmadomar/ScreenTask] was developed by (ahmadomar)[https://github.com/ahmadomar] (discontinued).
-* The predecessor is a (C# App)[https://github.com/EslaMx7/ScreenTask] by (Eslam Hamouda)[https://github.com/EslaMx7] (only bug fixes).
-* (I)[https://github.com/HoffmannP] only updated the WebUI that refreshes the screenshots.
+* The [Java App](https://github.com/ahmadomar/ScreenTask) was developed by [ahmadomar](https://github.com/ahmadomar) (discontinued).
+* The predecessor is a [C# App](https://github.com/EslaMx7/ScreenTask) by [Eslam Hamouda](https://github.com/EslaMx7) (only bug fixes).
+* [I](https://github.com/HoffmannP) updated the WebUI that refreshes the screenshots and the java App.
 
 Features
 --------
