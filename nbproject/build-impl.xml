@@ -28,9 +28,9 @@ is divided into following sections:
         </condition>
     </fail>
     <target depends="test,jar,javadoc" description="Build and test whole project." name="default"/>
-    <!-- 
+    <!--
                 ======================
-                INITIALIZATION SECTION 
+                INITIALIZATION SECTION
                 ======================
             -->
     <target name="-pre-init">
@@ -1199,7 +1199,7 @@ is divided into following sections:
                 </not>
             </and>
         </condition>
-        <javadoc additionalparam="${javadoc.additionalparam}" author="${javadoc.author}" charset="UTF-8" destdir="${dist.javadoc.dir}" docencoding="UTF-8" encoding="${javadoc.encoding.used}" failonerror="true" noindex="${javadoc.noindex}" nonavbar="${javadoc.nonavbar}" notree="${javadoc.notree}" private="${javadoc.private}" source="${javac.source}" splitindex="${javadoc.splitindex}" use="${javadoc.use}" useexternalfile="true" version="${javadoc.version}" windowtitle="${javadoc.windowtitle}">
+        <javadoc additionalparam="${javadoc.additionalparam}" author="${javadoc.author}" charset="UTF-8" destdir="${dist.javadoc.dir}" docencoding="UTF-8" encoding="${javadoc.encoding.used}" failonerror="true" noindex="${javadoc.noindex}" nonavbar="${javadoc.nonavbar}" notree="${javadoc.notree}" private="${javadoc.private}" source="${javac.source}" splitindex="${javadoc.splitindex}" use="${javadoc.use}" useexternalfile="true" version="${javadoc.version}">
             <classpath>
                 <path path="${javac.classpath}"/>
             </classpath>
