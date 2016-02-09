@@ -32,21 +32,21 @@ public class frmMain extends javax.swing.JFrame {
      *
      * @throws java.net.SocketException
      */
-    
+
     public frmMain() throws SocketException, IOException, URISyntaxException {
         setTitle("Screen Task");
 	setSize(620,420);
-	
+
 	setDefaultCloseOperation(EXIT_ON_CLOSE);
-    
+
         setLayout(new BorderLayout());
-        
+
         Image img = javax.imageio.ImageIO.read(getClass().getResourceAsStream("/images/ScreenTaskBackground.png"));
         setContentPane(new JLabel(new ImageIcon(img)));
 	setLayout(new FlowLayout());
-	
+
         initComponents();
-        
+
         Network.LoadIps(cbmIP);
     }
 
@@ -60,7 +60,7 @@ public class frmMain extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        cbmIP = new javax.swing.JComboBox();
+        cbmIP = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         spnPortNum = new javax.swing.JSpinner();
         chkScreenShotEvery = new javax.swing.JCheckBox();
@@ -92,7 +92,7 @@ public class frmMain extends javax.swing.JFrame {
 
         jLabel2.setText("Port : ");
 
-        spnPortNum.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+        spnPortNum.setModel(new javax.swing.SpinnerNumberModel(8888, 1, null, 1));
 
         chkScreenShotEvery.setText("Take Sceenshot Every :");
         chkScreenShotEvery.addActionListener(new java.awt.event.ActionListener() {
@@ -101,11 +101,11 @@ public class frmMain extends javax.swing.JFrame {
             }
         });
 
-        spnEvery.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(500), Integer.valueOf(1), null, Integer.valueOf(1)));
+        spnEvery.setModel(new javax.swing.SpinnerNumberModel(500, 1, null, 1));
         spnEvery.setEnabled(false);
         spnEvery.setValue(500);
 
-        jLabel3.setText("Mellisecond");
+        jLabel3.setText("Millisecond");
 
         txtURL.setEditable(false);
         txtURL.setText("The URL will displayed here after starting the server...");
@@ -136,7 +136,7 @@ public class frmMain extends javax.swing.JFrame {
         txtPassword.setText("task");
         txtPassword.setEnabled(false);
 
-        btnStartServer.setFont(new java.awt.Font("Tahoma", 1, 14));
+        btnStartServer.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnStartServer.setText("Start Server");
         btnStartServer.setName(""); // NOI18N
         btnStartServer.addActionListener(new java.awt.event.ActionListener() {
@@ -288,13 +288,13 @@ public class frmMain extends javax.swing.JFrame {
             txtPassword.setEnabled(true);
         }
     }//GEN-LAST:event_chkPrivateActionPerformed
-    
+
     WebServer webServer = new WebServer();
     ScreenThread screenThread;
-    
+
     private void btnStartServerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartServerActionPerformed
         // TODO add your handling code here:
-        
+
         if (btnStartServer.getName().equals("")) {
             btnStartServer.setName("start");
             btnStartServer.setText("Start Server");
@@ -304,36 +304,36 @@ public class frmMain extends javax.swing.JFrame {
               int port = (int) spnPortNum.getValue();
               int every = (int)spnEvery.getValue();
               boolean isPrivate = chkPrivate.isSelected();
-              
+
             if (btnStartServer.getName().equals("start")) {
-                
+
                 Resources.Log(txtLog, "Starting Server, Please Wait...");
                 String ipAddress = (String) cbmIP.getSelectedItem();
                 ipAddress = ipAddress.split(" # ")[0];
-                
+
                 btnStartServer.setEnabled(false);
                 if(isPrivate)
                 {
                     webServer.setUsername(txtUser.getText());
                     webServer.setPassword(new String(txtPassword.getPassword()));
-                    
+
                 }
-                
+
                 isWorking = webServer.StartServer(txtLog,ipAddress,port,isPrivate);
-                
+
                 if(isWorking){
                     screenThread = new ScreenThread(every, chkMousePointer.isSelected());
-                
+
                 screenThread.start();
-                
+
                 String url = "http://" + ipAddress + ":" + port;
                 txtURL.setText(url);
-                
+
                 btnStartServer.setEnabled(true);
                 Resources.Log(txtLog, "Server Started Successfuly!");
                 Resources.Log(txtLog, "Private Network URL : " + url);
                 Resources.Log(txtLog, "Localhost URL : " + "http://localhost:" + port + "/");
-                
+
                 btnStartServer.setName("stop");
                 btnStartServer.setText("Stop Server");
                 spnPortNum.setEnabled(false);
@@ -349,11 +349,11 @@ public class frmMain extends javax.swing.JFrame {
                 if(isWorking){
                 btnStartServer.setEnabled(false);
                 Resources.Log(txtLog, "Stopping Server, Please Wait...");
-                
+
                 webServer.StopServer(screenThread);
 
                  Resources.Log(txtLog, "Server Stopped.");
-                
+
                  btnStartServer.setEnabled(true);
                 btnStartServer.setName("start");
                 btnStartServer.setText("Start Server");
@@ -367,35 +367,35 @@ public class frmMain extends javax.swing.JFrame {
                 }
             }
         } catch (Exception ex) {
-            
+
             Resources.Log(txtLog, "Error! : " + ex.getMessage());
         }
     }//GEN-LAST:event_btnStartServerActionPerformed
 
     private void chkPreviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkPreviewActionPerformed
         // TODO add your handling code here:
-        
+
         if(isWorking){
          new javax.swing.Timer(500, new ActionListener() {
              @Override
              public void actionPerformed(ActionEvent e) {
-                 
-             boolean selected = chkPreview.isSelected();   
+
+             boolean selected = chkPreview.isSelected();
                 if(selected){
                  try {
                      ScreenShot.PreviewImage(lblImage);
                  } catch (URISyntaxException ex) {
-                    
+
                  } catch (MalformedURLException ex) {
-                    
-                 } 
+
+                 }
                 }
              }
          }).start();
         }
     }//GEN-LAST:event_chkPreviewActionPerformed
-    
-    
+
+
     private void chkScreenShotEveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkScreenShotEveryActionPerformed
         // TODO add your handling code here:
         if (spnEvery.isEnabled()) {
@@ -424,7 +424,7 @@ JFrame frame = null;
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -460,11 +460,11 @@ JFrame frame = null;
         });
 
     }
-  
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnStartServer;
-    private javax.swing.JComboBox cbmIP;
+    private javax.swing.JComboBox<String> cbmIP;
     private javax.swing.JCheckBox chkMousePointer;
     private javax.swing.JCheckBox chkPreview;
     private javax.swing.JCheckBox chkPrivate;

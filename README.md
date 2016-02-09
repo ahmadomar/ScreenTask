@@ -1,44 +1,30 @@
 ScreenTask
 ==========
-Desktop App in Java to Share Your Screen With Your Friends Inside The Internal Network.
 
-Thanks for Eslam Hamouda ;) for develop windows application ( https://github.com/EslaMx7/ScreenTask )
+About
+-----
 
-After that i have developed Generic screentask application that works in windows and linux ubuntu
+This Programm consists of a Java App that regularly takes screenshots and a webserver that shows the newest screenshot.
 
+History
+-------
 
-### > [Download ZIP Archive (380 KB)](http://goo.gl/iK4Alw)
+* The [Java App](https://github.com/ahmadomar/ScreenTask) was developed by [ahmadomar](https://github.com/ahmadomar) (discontinued).
+* The predecessor is a [C# App](https://github.com/EslaMx7/ScreenTask) by [Eslam Hamouda](https://github.com/EslaMx7) (only bug fixes).
+* [I](https://github.com/HoffmannP) updated the WebUI that refreshes the screenshots and the java App.
 
+Features
+--------
+* Share your screen inside a network without internet connection (no TeamViewer anymore)
+* WebUI so clients don't need any additional software (only a web browser)
+* Make your session private using basic authentication (user/password)
+* Works on Windows, Linux and Mac
 
+Screenshots
+-----------
+![Show only a selection of the full screen](screenShots/1.png)
+* You can select to only view a selection of the full screen
+* Update the refresh cycle independent from the server (shouldn't be greater thant the servers)
 
-------------------------------
-### List Of Features : 
-- Share Your Screen Inside a Network Without Internet Connection (No TeamViewer Anymore)
-- WebUI So Clients Doesn't Need Any Additional Software (Only Web Browser)
-- Make Your Session Private Using Basic Authentication (User::Password)
-- Unlimited Number Of Connected Clients
-- Work in any operating system not tested in mac
-
------------------------
-### Ubuntu screenshots:
-
-![Screen Task Main Window](https://raw2.github.com/ahmadomar/ScreenTask/master/ubuntu1.png)
-![Another window](https://raw2.github.com/ahmadomar/ScreenTask/master/ubuntu2.png)
-
-
-### Windows screenshots:
-
-![Screen Task Main Window](https://raw2.github.com/ahmadomar/ScreenTask/master/windows1.png)
-![Another window](https://raw2.github.com/ahmadomar/ScreenTask/master/windows2.png)
-
-
-
-
-
-
-
-> Mobile View Supported [Thanks to Bootstrap 3]
-
-> Java is Required [Download NOW!](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
-
-> Works On Windows, linux and not tested in mac
+![Use screen tiles](screenShots/2.png)
+* Only show a tiled screen, you could use multiple monitors/browsers/what-evers or only select one part of the screen
