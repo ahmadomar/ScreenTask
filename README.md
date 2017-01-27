@@ -7,7 +7,7 @@ Thanks for Eslam Hamouda ;) for develop windows application ( https://github.com
 After that i have developed Generic screentask application that works in windows and linux ubuntu
 
 
-### > [Download ZIP Archive (380 KB)](http://goo.gl/iK4Alw)
+### > [Download ZIP Archive (380 KB)](https://github.com/ahmadomar/ScreenTask/raw/master/ScreenTaskGeneric.zip)
 
 
 
