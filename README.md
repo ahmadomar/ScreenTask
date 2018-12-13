@@ -17,7 +17,7 @@ After that i have developed Generic screentask application that works in windows
 - WebUI So Clients Doesn't Need Any Additional Software (Only Web Browser)
 - Make Your Session Private Using Basic Authentication (User::Password)
 - Unlimited Number Of Connected Clients
-- Work in any operating system not tested in mac
+- Work in any operating system
 
 -----------------------
 ### Ubuntu screenshots:
